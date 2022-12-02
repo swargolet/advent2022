@@ -4,6 +4,7 @@ import com.sw.advent.days.Day;
 import com.sw.advent.days.Day1;
 import com.sw.advent.days.Day1b;
 import com.sw.advent.days.Day2;
+import com.sw.advent.days.Day2b;
 import com.sw.advent.file.FileLoader;
 import java.io.File;
 import java.io.IOException;
@@ -13,7 +14,7 @@ import java.nio.file.Files;
 
 public class Main {
 
-  private static final Day DAY = new Day2();
+  private static final Day DAY = new Day2b();
 
   public static void main(String[] args) throws URISyntaxException, IOException {
     FileLoader fileLoader = new FileLoader();
