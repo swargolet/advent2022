@@ -1,13 +1,8 @@
 package com.sw.advent.days;
 
 import java.util.Arrays;
-import lombok.Getter;
 
 public class Day3 implements Day {
-
-  @Getter
-  private final String day = "Day3";
-
   @Override
   public void process(String contents) {
     String[] lines = contents.split("\n");

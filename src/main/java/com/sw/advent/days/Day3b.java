@@ -3,10 +3,6 @@ package com.sw.advent.days;
 import lombok.Getter;
 
 public class Day3b implements Day {
-
-  @Getter
-  private final String day = "Day3";
-
   @Override
   public void process(String contents) {
     String[] lines = contents.split("\n");

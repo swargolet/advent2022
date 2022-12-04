@@ -2,7 +2,6 @@ package com.sw.advent.days;
 
 import java.util.Arrays;
 import java.util.Map;
-import lombok.Getter;
 
 public class Day2b implements Day {
 
@@ -17,8 +16,6 @@ public class Day2b implements Day {
       "A Z", 8,
       "B Z", 9
   );
-  @Getter
-  private final String day = "Day2";
 
   @Override
   public void process(String contents) {
