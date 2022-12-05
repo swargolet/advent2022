@@ -1,12 +1,8 @@
 package com.sw.advent.days;
 
 import java.util.Arrays;
-import lombok.Getter;
 
 public class Day4b implements Day {
-
-  @Getter
-  private final String day = "Day4";
 
   @Override
   public void process(String contents) {

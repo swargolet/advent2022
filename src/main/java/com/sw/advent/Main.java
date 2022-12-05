@@ -9,7 +9,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 
 public class Main {
-  private static final Day DAY = new Day4b();
+  private static final Day DAY = new Day5b();
 
   public static void main(String[] args) throws URISyntaxException, IOException {
     FileLoader fileLoader = new FileLoader();
