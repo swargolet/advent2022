@@ -16,7 +16,13 @@ public class Day5 implements Day {
     Map<Integer, Deque<Character>> stacks = new HashMap<>();
     String[] stackLines = stackInstructions[0].split("\n");
     for (int i = stackLines.length - 2; i >= 0; i--) {
-      parseStack(stacks, stackLines[i]);
+      char[] chars = stackLines[i].toCharArray();
+      for (int j = 1; j < chars.length; j = j + 4) {
+        char s = chars[j];
+        if (Character.isAlphabetic(s)) {
+          stacks.computeIfAbsent((j + 3) / 4, k -> new LinkedList<>()).push(s);
+        }
+      }
     }
 
     for (String line : stackInstructions[1].split("\n")) {
@@ -35,17 +41,5 @@ public class Day5 implements Day {
         .map(Objects::toString)
         .collect(Collectors.joining());
     System.out.println(res);
-  }
-
-  private void parseStack(Map<Integer, Deque<Character>> stacks, String line) {
-    Integer stackNum = 1;
-    char[] chars = line.toCharArray();
-    for (int i = 1; i < chars.length; i = i + 4) {
-      char s = chars[i];
-      if (s != ' ' && Character.isAlphabetic(s)) {
-        stacks.computeIfAbsent(stackNum, k -> new LinkedList<>()).push(s);
-      }
-      stackNum++;
-    }
   }
 }
