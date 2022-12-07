@@ -41,9 +41,9 @@ public class Day7 implements Day {
 
   private Resource parseTree(String contents) {
     String[] lines = contents.split("\n");
+
     Resource root = Resource.builder().name("/").type(ResourceType.DIRECTORY).build();
     Resource curResource = root;
-
     for (int i = 1; i < lines.length; i++) {
       String line = lines[i];
       String[] s = line.split(" ");
@@ -76,7 +76,7 @@ public class Day7 implements Day {
     long size;
 
     boolean isDirectory() {
-      return this.type.equals(ResourceType.DIRECTORY);
+      return type.equals(ResourceType.DIRECTORY);
     }
 
     static Resource fromLine(String line) {
