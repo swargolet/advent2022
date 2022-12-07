@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.stream.Stream;
 import lombok.Builder;
 import lombok.Value;
+import lombok.experimental.NonFinal;
 
 public class Day7 implements Day {
   @Override
@@ -73,6 +74,7 @@ public class Day7 implements Day {
     @Builder.Default
     Map<String, Resource> children = new HashMap<>();
     ResourceType type;
+    @NonFinal
     long size;
 
     boolean isDirectory() {
@@ -90,13 +92,12 @@ public class Day7 implements Day {
     }
 
     public long getSize() {
-      if (type.equals(ResourceType.FILE)) {
-        return size;
-      } else {
-        return children.values().stream()
+      if (size == 0) {
+        size = children.values().stream()
             .mapToLong(Resource::getSize)
             .sum();
       }
+      return size;
     }
   }
 
