@@ -4,8 +4,7 @@ public interface Day {
 
   default String getDay() {
     String simpleName = this.getClass().getSimpleName();
-    int bIndex = simpleName.indexOf('b');
-    if (bIndex != -1) {
+    if (Character.isAlphabetic(simpleName.charAt(simpleName.length() - 1))) {
       return simpleName.substring(0, simpleName.length() - 1);
     }
     return simpleName;
