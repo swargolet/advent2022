@@ -11,7 +11,7 @@ public class Day7c implements Day<Long> {
   Pattern dirP = Pattern.compile("\\$ cd (\\w+)");
   Pattern fileP = Pattern.compile("(\\d+) \\w+");
 
-  @Override
+
   public void process(String contents) {
     String[] lines = contents.split("\n");
     Matcher m;

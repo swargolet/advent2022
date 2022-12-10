@@ -13,7 +13,6 @@ public class Day7b implements Day<Long> {
         resource.getChildren().values().stream().flatMap(Day7b::flatten));
   }
 
-  @Override
   public void process(String contents) {
     Resource root = parseTree(contents);
 
