@@ -2,6 +2,9 @@ package com.sw.advent.days;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Stream;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
 public class Day9 implements Day {
 
@@ -9,50 +12,62 @@ public class Day9 implements Day {
   public void process(String contents) {
     String[] lines = contents.split("\n");
     part1(lines);
-//    part2(contents);
+    part2(lines);
   }
 
   void part1(String[] lines) {
-    int hx = 0;
-    int hy = 0;
-    int tx = 0;
-    int ty = 0;
-    Set<Point> tailPoints = new HashSet<>();
+    System.out.println(handleRope(lines, 2));
+  }
 
-    tailPoints.add(new Point(tx, ty));
+  private void part2(String[] lines) {
+    System.out.println(handleRope(lines, 10));
+  }
+
+  private int handleRope(String[] lines, int length) {
+    Point[] points = Stream.generate(Point::new).limit(length).toArray(Point[]::new);
+
+    Set<Point> tailPoints = new HashSet<>();
+    tailPoints.add(new Point());
     for (String line : lines) {
       char dir = line.charAt(0);
       int amt = Integer.parseInt(line.substring(2));
       for (int i = 0; i < amt; i++) {
-        if (dir == 'U') {
-          hy++;
-        } else if (dir == 'D') {
-          hy--;
-        } else if (dir == 'L') {
-          hx--;
-        } else if (dir == 'R') {
-          hx++;
+        switch (dir) {
+          case 'U' -> points[0].y++;
+          case 'D' -> points[0].y--;
+          case 'L' -> points[0].x--;
+          case 'R' -> points[0].x++;
         }
-        if (Math.abs(hx - tx) > 1) { // too far away on row
-          tx += (hx - tx) / 2;
-          if (hy != ty) { //move diagonally
-            ty = hy;
-          }
-          tailPoints.add(new Point(tx, ty));
-        } else if (Math.abs(hy - ty) > 1) { // too far away on col
-          ty += (hy - ty) / 2;
-          if (hx != tx) { //move diagonally
-            tx = hx;
-          }
-          tailPoints.add(new Point(tx, ty));
+
+        for (int p = 0; p < length - 1; p++) {
+          movePoints(points[p], points[p + 1]);
         }
+        tailPoints.add(new Point(points[length - 1]));
       }
     }
-    System.out.println(tailPoints.size());
+    return tailPoints.size();
   }
 
+  void movePoints(Point p1, Point p2) {
+    if (Math.abs(p1.x - p2.x) >  1 || (Math.abs(p1.y - p2.y) > 1)) {
+      p2.x += Integer.signum(p1.x - p2.x);
+      p2.y += Integer.signum(p1.y - p2.y);
+    }
+  }
 
-  record Point(int x, int y) {
+  @Data
+  @AllArgsConstructor
+  static class Point {
+    int x;
+    int y;
 
+    public Point() {
+      this.x = 0;
+      this.y = 0;
+    }
+    public Point(Point p) {
+      this.x = p.x;
+      this.y = p.y;
+    }
   }
 }
