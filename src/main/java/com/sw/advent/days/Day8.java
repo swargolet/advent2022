@@ -1,37 +1,35 @@
 package com.sw.advent.days;
 
-public class Day8 implements Day {
+public class Day8 implements Day<Integer> {
 
-  private static final int gridSize = 99;
+  private static final int GRID_SIZE = 99;
 
   @Override
-  public void process(String contents) {
+  public Integer part1(String contents) {
     String[] lines = contents.split("\n");
-
-    int[][] trees = new int[gridSize][gridSize];
-    for (int i = 0; i < gridSize; i++) {
-      String line = lines[i];
-      for (int j = 0; j < gridSize; j++) {
-        trees[i][j] = line.charAt(j) - 48;
-      }
-    }
-
-    part1(trees);
-    part2(trees);
-  }
-
-  void part1(int[][] trees) {
-    int outerEdge = gridSize * 4;
+    int[][] trees = parseTrees(lines);
+    int outerEdge = GRID_SIZE * 4;
     int count = outerEdge;
-    for (int i = 1; i < gridSize - 1; i++) {
-      for (int j = 1; j < gridSize - 1; j++) {
+    for (int i = 1; i < GRID_SIZE - 1; i++) {
+      for (int j = 1; j < GRID_SIZE - 1; j++) {
         if (isTreeVisible(trees, i, j)) {
           count++;
         }
       }
     }
 
-    System.out.println(count);
+    return count;
+  }
+
+  private int[][] parseTrees(String[] lines) {
+    int[][] trees = new int[GRID_SIZE][GRID_SIZE];
+    for (int i = 0; i < GRID_SIZE; i++) {
+      String line = lines[i];
+      for (int j = 0; j < GRID_SIZE; j++) {
+        trees[i][j] = line.charAt(j) - 48;
+      }
+    }
+    return trees;
   }
 
   private boolean isTreeVisible(int[][] trees, int curRow, int curCol) {
@@ -46,9 +44,9 @@ public class Day8 implements Day {
         break;
       }
     }
-    for (int k = curCol + 1; k < gridSize; k++) { // right side
+    for (int k = curCol + 1; k < GRID_SIZE; k++) { // right side
       if (curTree > trees[curRow][k]) {
-        if (k == gridSize - 1) {
+        if (k == GRID_SIZE - 1) {
           return true;
         }
       } else {
@@ -67,9 +65,9 @@ public class Day8 implements Day {
       }
     }
 
-    for (int k = curRow + 1; k < gridSize; k++) { // top side
+    for (int k = curRow + 1; k < GRID_SIZE; k++) { // top side
       if (curTree > trees[k][curCol]) {
-        if (k == gridSize - 1) {
+        if (k == GRID_SIZE - 1) {
           return true;
         }
       } else {
@@ -80,10 +78,13 @@ public class Day8 implements Day {
     return false;
   }
 
-  void part2(int[][] trees) {
-    long max = 0;
-    for (int curRow = 1; curRow < gridSize - 1; curRow++) {
-      for (int curCol = 1; curCol < gridSize - 1; curCol++) {
+  @Override
+  public Integer part2(String contents) {
+    String[] lines = contents.split("\n");
+    int[][] trees = parseTrees(lines);
+    int max = 0;
+    for (int curRow = 1; curRow < GRID_SIZE - 1; curRow++) {
+      for (int curCol = 1; curCol < GRID_SIZE - 1; curCol++) {
         int curTree = trees[curRow][curCol];
 
         // look through row
@@ -98,8 +99,8 @@ public class Day8 implements Day {
         int scenicScore = tmpScore;
 
         tmpScore = 1;
-        for (int k = curCol + 1; k < gridSize; k++) { // right side
-          if (curTree > trees[curRow][k] && k < gridSize - 1) {
+        for (int k = curCol + 1; k < GRID_SIZE; k++) { // right side
+          if (curTree > trees[curRow][k] && k < GRID_SIZE - 1) {
             tmpScore++;
           } else {
             break;
@@ -119,8 +120,8 @@ public class Day8 implements Day {
         scenicScore *= tmpScore;
 
         tmpScore = 1;
-        for (int k = curRow + 1; k < gridSize; k++) { // bottom side
-          if (curTree > trees[k][curCol] && k < gridSize - 1) {
+        for (int k = curRow + 1; k < GRID_SIZE; k++) { // bottom side
+          if (curTree > trees[k][curCol] && k < GRID_SIZE - 1) {
             tmpScore++;
           } else {
             break;
@@ -133,6 +134,6 @@ public class Day8 implements Day {
         }
       }
     }
-    System.out.println(max);
+    return max;
   }
 }

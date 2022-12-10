@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Day7c implements Day {
+public class Day7c implements Day<Long> {
   Pattern dirP = Pattern.compile("\\$ cd (\\w+)");
   Pattern fileP = Pattern.compile("(\\d+) \\w+");
 

@@ -5,22 +5,20 @@ import java.util.Set;
 import java.util.stream.Stream;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-public class Day9 implements Day {
+public class Day9 implements Day<Integer> {
 
   @Override
-  public void process(String contents) {
+  public Integer part1(String contents) {
     String[] lines = contents.split("\n");
-    part1(lines);
-    part2(lines);
+    return handleRope(lines, 2);
   }
 
-  void part1(String[] lines) {
-    System.out.println(handleRope(lines, 2));
-  }
-
-  private void part2(String[] lines) {
-    System.out.println(handleRope(lines, 10));
+  @Override
+  public Integer part2(String contents) {
+    String[] lines = contents.split("\n");
+    return handleRope(lines, 10);
   }
 
   private int handleRope(String[] lines, int length) {
@@ -56,15 +54,12 @@ public class Day9 implements Day {
   }
 
   @Data
+  @NoArgsConstructor
   @AllArgsConstructor
   static class Point {
     int x;
     int y;
 
-    public Point() {
-      this.x = 0;
-      this.y = 0;
-    }
     public Point(Point p) {
       this.x = p.x;
       this.y = p.y;

@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.stream.Stream;
 import lombok.Data;
 
-public class Day7b implements Day {
+public class Day7b implements Day<Long> {
 
   private static Stream<Resource> flatten(Resource resource) {
     return Stream.concat(

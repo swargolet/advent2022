@@ -7,23 +7,20 @@ import lombok.Builder;
 import lombok.Value;
 import lombok.experimental.NonFinal;
 
-public class Day7 implements Day {
-  @Override
-  public void process(String contents) {
+public class Day7 implements Day<Long> {
+  public Long part1(String contents) {
     Resource root = parseTree(contents);
-
-    // Part 1
-    long sum = flatten(root)
+    return flatten(root)
         .filter(Resource::isDirectory)
         .mapToLong(Resource::getSize)
         .filter(l -> l <= 100000)
         .sum();
-    System.out.println(sum);
+  }
 
-//    272298
-    // Part 2
+  public Long part2(String contents) {
+    Resource root = parseTree(contents);
     long neededSpace = 30000000 - (70000000 - root.getSize());
-    long dirToDelete = flatten(root)
+    return flatten(root)
         .filter(Resource::isDirectory)
         .mapToLong(Resource::getSize)
         .filter(l -> l >= neededSpace)
@@ -31,7 +28,6 @@ public class Day7 implements Day {
         .limit(1)
         .findFirst()
         .orElseThrow();
-    System.out.println(dirToDelete);
   }
 
   private static Stream<Resource> flatten(Resource resource) {

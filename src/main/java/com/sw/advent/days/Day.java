@@ -1,6 +1,6 @@
 package com.sw.advent.days;
 
-public interface Day {
+public interface Day<T> {
 
   default String getDay() {
     String simpleName = this.getClass().getSimpleName();
@@ -10,6 +10,11 @@ public interface Day {
     return simpleName;
   }
 
-  default void process(String contents) {
+  default T part1(String contents) {
+    return null;
+  }
+
+  default T part2(String contents) {
+    return null;
   }
 }

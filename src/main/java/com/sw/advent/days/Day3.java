@@ -2,18 +2,16 @@ package com.sw.advent.days;
 
 import java.util.Arrays;
 
-public class Day3 implements Day {
+public class Day3 implements Day<Integer> {
   @Override
-  public void process(String contents) {
+  public Integer part1(String contents) {
     String[] lines = contents.split("\n");
 
-    int sum = Arrays.stream(lines)
+    return Arrays.stream(lines)
         .map(String::toCharArray)
         .map(this::getDupe)
         .mapToInt(c -> Character.isUpperCase(c) ? c - 38 : c - 96)
         .sum();
-
-    System.out.println(sum);
   }
 
   // using only streams
@@ -38,5 +36,26 @@ public class Day3 implements Day {
       }
     }
     throw new IllegalStateException("No matching char found");
+  }
+
+
+  @Override
+  public Integer part2(String contents) {
+    String[] lines = contents.split("\n");
+
+    int sum = 0;
+    for (int i = 0; i < lines.length; i = i + 3) {
+      char badge = (char) getBadge(lines[i], lines[i + 1], lines[i + 2]);
+      sum += Character.isUpperCase(badge) ? badge - 38 : badge - 96;
+    }
+
+    return sum;
+  }
+
+  private int getBadge(String l1, String l2, String l3) {
+    return l1.chars()
+        .filter(c -> l2.indexOf(c) != -1 && l3.indexOf(c) != -1)
+        .findFirst()
+        .orElseThrow();
   }
 }
