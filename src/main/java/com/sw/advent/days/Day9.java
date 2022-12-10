@@ -11,17 +11,16 @@ public class Day9 implements Day<Integer> {
 
   @Override
   public Integer part1(String contents) {
-    String[] lines = contents.split("\n");
-    return handleRope(lines, 2);
+    return handleRope(contents, 2);
   }
 
   @Override
   public Integer part2(String contents) {
-    String[] lines = contents.split("\n");
-    return handleRope(lines, 10);
+    return handleRope(contents, 10);
   }
 
-  private int handleRope(String[] lines, int length) {
+  private int handleRope(String contents, int length) {
+    String[] lines = contents.split("\n");
     Point[] points = Stream.generate(Point::new).limit(length).toArray(Point[]::new);
 
     Set<Point> tailPoints = new HashSet<>();
@@ -38,19 +37,17 @@ public class Day9 implements Day<Integer> {
         }
 
         for (int p = 0; p < length - 1; p++) {
-          movePoints(points[p], points[p + 1]);
+          Point p1 = points[p];
+          Point p2 = points[p + 1];
+          if (Math.abs(p1.x - p2.x) >  1 || (Math.abs(p1.y - p2.y) > 1)) {
+            p2.x += Integer.signum(p1.x - p2.x);
+            p2.y += Integer.signum(p1.y - p2.y);
+          }
         }
         tailPoints.add(new Point(points[length - 1]));
       }
     }
     return tailPoints.size();
-  }
-
-  void movePoints(Point p1, Point p2) {
-    if (Math.abs(p1.x - p2.x) >  1 || (Math.abs(p1.y - p2.y) > 1)) {
-      p2.x += Integer.signum(p1.x - p2.x);
-      p2.y += Integer.signum(p1.y - p2.y);
-    }
   }
 
   @Data
