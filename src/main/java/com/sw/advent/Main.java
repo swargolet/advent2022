@@ -11,7 +11,7 @@ import java.nio.file.Files;
 
 public class Main {
 
-  private static final Day<?> DAY = new Day10b();
+  private static final Day<?> DAY = new Day11();
 
   public static void main(String[] args) throws URISyntaxException, IOException {
     FileLoader fileLoader = new FileLoader();
