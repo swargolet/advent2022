@@ -13,16 +13,12 @@ public class Day11 implements Day<Long> {
 
   @Override
   public Long part1(String contents) {
-    long product =  doCycles(contents, 20, 3);
-    System.out.println(product == 58056);
-    return product;
+    return doCycles(contents, 20, 3);
   }
 
   @Override
   public Long part2(String contents) {
-    long product = doCycles(contents, 10000, 1);
-    System.out.println(product == 15048718170L);
-    return product;
+    return doCycles(contents, 10000, 1);
   }
 
   public Long doCycles(String contents, int numCycles, int divisor) {
@@ -34,7 +30,6 @@ public class Day11 implements Day<Long> {
           .map(String::trim)
           .map(Long::parseLong)
           .collect(Collectors.toCollection(ArrayList::new));
-
       String opNumStr = monkeyItems[2].substring(25);
 
       Monkey m = Monkey.builder()
@@ -51,8 +46,7 @@ public class Day11 implements Day<Long> {
 
     long modulo = monkeys.values().stream().map(Monkey::getDivisible).reduce(1, (a, b) -> a * b);
     for (int i = 0; i < numCycles; i++) {
-      for (Map.Entry<Integer, Monkey> e : monkeys.entrySet()) {
-        Monkey m = e.getValue();
+      for (Monkey m : monkeys.values()) {
         for (Long item : m.getItems()) {
           m.setInspectedTimes(m.getInspectedTimes() + 1);
           long newWorryLevel = doOperation(m, item) / divisor;
