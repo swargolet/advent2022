@@ -17,24 +17,21 @@ public class Y2023D02 implements Day<Integer> {
   public Integer part1(String contents) {
     // Stirng.split
     int sum = contents.lines()
-        .mapToInt(line -> {
-          String[] split = line.split(":");
-          int gameId = Integer.parseInt(split[0].substring(5));
-          String gameData = split[1];
-
-          boolean isImpossible = Arrays.stream(gameData.split("[,;]"))
+        .map(line -> line.split((":")))
+        .mapToInt(split -> {
+          boolean isImpossible = Arrays.stream(split[1].split("[,;]"))
               .map(dice -> dice.split(" "))
               .anyMatch(roll -> ("green".equals(roll[2]) && Integer.parseInt(roll[1]) > MAX_GREEN)
                   || ("blue".equals(roll[2]) && Integer.parseInt(roll[1]) > MAX_BLUE)
                   || ("red".equals(roll[2]) && Integer.parseInt(roll[1]) > MAX_RED));
 
-          return isImpossible ? 0 : gameId;
+          return isImpossible ? 0 : Integer.parseInt(split[0].substring(5));
         }).sum();
 
     // by character
     int sum2 = contents.lines()
-        .mapToInt(line -> {
-          String[] split = line.split(":");
+        .map(line -> line.split((":")))
+        .mapToInt(split -> {
           int gameId = Integer.parseInt(split[0].substring(5));
 
           int curNum = 0;
