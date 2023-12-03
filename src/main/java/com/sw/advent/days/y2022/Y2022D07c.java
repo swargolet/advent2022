@@ -1,4 +1,6 @@
-package com.sw.advent.days;
+package com.sw.advent.days.y2022;
+
+import com.sw.advent.days.Day;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -7,7 +9,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Day7c implements Day<Long> {
+public class Y2022D07c implements Day<Long> {
   Pattern dirP = Pattern.compile("\\$ cd (\\w+)");
   Pattern fileP = Pattern.compile("(\\d+) \\w+");
 

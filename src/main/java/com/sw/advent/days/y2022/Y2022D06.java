@@ -1,6 +1,8 @@
-package com.sw.advent.days;
+package com.sw.advent.days.y2022;
 
-public class Day6 implements Day<Integer> {
+import com.sw.advent.days.Day;
+
+public class Y2022D06 implements Day<Integer> {
   @Override
   public Integer part1(String contents) {
     char[] chars = contents.toCharArray();

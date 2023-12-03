@@ -1,11 +1,13 @@
-package com.sw.advent.days;
+package com.sw.advent.days.y2022;
+
+import com.sw.advent.days.Day;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Day13 implements Day<Integer> {
+public class Y2022D13 implements Day<Integer> {
 
   @Override
   public Integer part1(String contents) {

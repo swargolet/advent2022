@@ -1,4 +1,6 @@
-package com.sw.advent.days;
+package com.sw.advent.days.y2022;
+
+import com.sw.advent.days.Day;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -9,7 +11,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class Day5 implements Day<String> {
+public class Y2022D05 implements Day<String> {
 
   @Override
   public String part1(String contents) {

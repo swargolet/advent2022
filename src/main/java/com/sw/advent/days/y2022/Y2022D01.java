@@ -1,9 +1,11 @@
-package com.sw.advent.days;
+package com.sw.advent.days.y2022;
+
+import com.sw.advent.days.Day;
 
 import java.util.Arrays;
 import java.util.Comparator;
 
-public class Day1 implements Day<Integer> {
+public class Y2022D01 implements Day<Integer> {
   @Override
   public Integer part1(String contents) {
     return Arrays.stream(contents.split("\n\n"))

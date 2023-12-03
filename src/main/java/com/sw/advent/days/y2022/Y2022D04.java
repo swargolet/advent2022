@@ -1,8 +1,10 @@
-package com.sw.advent.days;
+package com.sw.advent.days.y2022;
+
+import com.sw.advent.days.Day;
 
 import java.util.Arrays;
 
-public class Day4 implements Day<Long> {
+public class Y2022D04 implements Day<Long> {
 
   @Override
   public Long part1(String contents) {

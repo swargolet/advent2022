@@ -1,11 +1,13 @@
-package com.sw.advent.days;
+package com.sw.advent.days.y2022;
 
 import java.util.Arrays;
 import java.util.stream.Collector;
+
+import com.sw.advent.days.Day;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-public class Day10b implements Day<Integer> {
+public class Y2022D10b implements Day<Integer> {
 
   @Override
   public Integer part1(String contents) {

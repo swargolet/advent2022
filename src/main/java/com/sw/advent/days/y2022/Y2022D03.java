@@ -1,8 +1,10 @@
-package com.sw.advent.days;
+package com.sw.advent.days.y2022;
+
+import com.sw.advent.days.Day;
 
 import java.util.Arrays;
 
-public class Day3 implements Day<Integer> {
+public class Y2022D03 implements Day<Integer> {
   @Override
   public Integer part1(String contents) {
     String[] lines = contents.split("\n");

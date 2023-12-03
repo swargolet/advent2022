@@ -1,13 +1,15 @@
-package com.sw.advent.days;
+package com.sw.advent.days.y2022;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Stream;
+
+import com.sw.advent.days.Day;
 import lombok.Builder;
 import lombok.Value;
 import lombok.experimental.NonFinal;
 
-public class Day7 implements Day<Long> {
+public class Y2022D07 implements Day<Long> {
   public Long part1(String contents) {
     Resource root = parseTree(contents);
     return flatten(root)
@@ -33,7 +35,7 @@ public class Day7 implements Day<Long> {
   private static Stream<Resource> flatten(Resource resource) {
     return Stream.concat(
         Stream.of(resource),
-        resource.getChildren().values().stream().flatMap(Day7::flatten));
+        resource.getChildren().values().stream().flatMap(Y2022D07::flatten));
   }
 
   private Resource parseTree(String contents) {

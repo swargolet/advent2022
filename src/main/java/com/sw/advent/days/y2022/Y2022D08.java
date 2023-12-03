@@ -1,6 +1,8 @@
-package com.sw.advent.days;
+package com.sw.advent.days.y2022;
 
-public class Day8 implements Day<Integer> {
+import com.sw.advent.days.Day;
+
+public class Y2022D08 implements Day<Integer> {
 
   private static final int GRID_SIZE = 99;
 

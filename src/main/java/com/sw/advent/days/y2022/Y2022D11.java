@@ -1,4 +1,4 @@
-package com.sw.advent.days;
+package com.sw.advent.days.y2022;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -6,10 +6,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import com.sw.advent.days.Day;
 import lombok.Builder;
 import lombok.Data;
 
-public class Day11 implements Day<Long> {
+public class Y2022D11 implements Day<Long> {
 
   @Override
   public Long part1(String contents) {

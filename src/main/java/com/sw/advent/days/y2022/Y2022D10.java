@@ -1,6 +1,8 @@
-package com.sw.advent.days;
+package com.sw.advent.days.y2022;
 
-public class Day10 implements Day<Integer> {
+import com.sw.advent.days.Day;
+
+public class Y2022D10 implements Day<Integer> {
 
   int x, cycle, sum;
   @Override
